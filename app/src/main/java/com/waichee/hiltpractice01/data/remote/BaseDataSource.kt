@@ -10,11 +10,13 @@ abstract class BaseDataSource {
         try {
             val response = call()
             if (response.isSuccessful) {
+                Timber.i("Response is successful")
                 val body = response.body()
                 if (body != null) return Resource.success(body)
             }
             return error(" ${response.code()} ${response.message()}")
         } catch (e: Exception) {
+            Timber.i("Error!!!!!!!")
             return error(e.message ?: e.toString())
         }
     }
