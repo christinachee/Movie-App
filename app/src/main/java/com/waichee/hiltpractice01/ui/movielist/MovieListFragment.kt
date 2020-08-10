@@ -18,9 +18,9 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MovieListFragment: Fragment() {
+class MovieListFragment: Fragment(), MovieListAdapter.MovieItemListener {
     private val viewModel: MovieListViewModel by viewModels()
-    @Inject lateinit var adapter: MovieListAdapter
+    private lateinit var adapter: MovieListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +29,9 @@ class MovieListFragment: Fragment() {
         val binding = FragmentMovieListBinding.inflate(inflater)
         binding.viewModel = viewModel
 
+        adapter = MovieListAdapter(this)
         binding.movieRv.adapter = adapter
+
         setupObservers()
 
         return binding.root
@@ -52,5 +54,10 @@ class MovieListFragment: Fragment() {
                 }
             }
         })
+    }
+
+    override fun onClickedMovie(movie_id: Int) {
+        Toast.makeText(activity, "$movie_id", Toast.LENGTH_SHORT).show()
+        Timber.i("$movie_id is clicked")
     }
 }

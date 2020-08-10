@@ -10,4 +10,8 @@ class MovieRepository @Inject constructor(
     fun getMovies() = performGetOperation(
         networkCall = { remoteDataSource.getMovies() }
     )
+
+    fun getMovie(movie_id: Int) = performGetOperation(
+        networkCall = {remoteDataSource.getMovie(movie_id)}
+    )
 }

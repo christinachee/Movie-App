@@ -8,4 +8,6 @@ class MovieRemoteDataSource @Inject constructor(
 
     suspend fun getMovies() = getResult { movieService.getMovies("d7edc25efdda8e8ca81a58e7cc18c654")}
 
+    suspend fun getMovie(movie_id: Int) = getResult { movieService.getMovie(movie_id, "d7edc25efdda8e8ca81a58e7cc18c654") }
+
 }
