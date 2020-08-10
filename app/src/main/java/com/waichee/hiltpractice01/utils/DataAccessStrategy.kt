@@ -4,10 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import kotlinx.coroutines.Dispatchers
+import timber.log.Timber
 
 
-fun <T> performGetOperation(networkCall: suspend () -> Resource<T>): LiveData<Resource<T>> =
-    liveData(Dispatchers.IO) {
+fun <T> performGetOperation(networkCall: suspend () -> Resource<T>): LiveData<Resource<T>> {
+    Timber.i("PerformGetOperation")
+    return liveData(Dispatchers.IO) {
         emit(Resource.loading())
 
         val responseStatus = networkCall.invoke()
@@ -17,3 +19,5 @@ fun <T> performGetOperation(networkCall: suspend () -> Resource<T>): LiveData<Re
             emit(Resource.error(responseStatus.message!!))
         }
     }
+}
+

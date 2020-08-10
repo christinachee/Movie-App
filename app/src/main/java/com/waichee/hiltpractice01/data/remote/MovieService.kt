@@ -11,7 +11,7 @@ interface MovieService {
     @GET("trending/movie/day")
     suspend fun getMovies(@Query("api_key") key: String) : Response<MovieList>
 
-    @GET("/movie/{movie_id}")
+    @GET("movie/{movie_id}")
     suspend fun getMovie(@Path("movie_id") movie_id: Int, @Query("api_key") key: String): Response<MovieDetail>
 
 }

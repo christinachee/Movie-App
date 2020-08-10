@@ -56,6 +56,5 @@ class MovieListAdapter constructor(private val listener: MovieItemListener) :
         override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem.id == newItem.id
         }
-
     }
 }
