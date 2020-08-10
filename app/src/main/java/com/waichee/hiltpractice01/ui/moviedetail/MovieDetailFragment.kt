@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.squareup.picasso.Picasso
 import com.waichee.hiltpractice01.data.entities.MovieDetail
 import com.waichee.hiltpractice01.databinding.FragmentMovieDetailBinding
 import com.waichee.hiltpractice01.utils.Resource
@@ -25,7 +26,6 @@ class MovieDetailFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMovieDetailBinding.inflate(inflater)
-        binding.viewModel = viewModel
 
         return binding.root
     }
@@ -40,7 +40,7 @@ class MovieDetailFragment: Fragment() {
         viewModel.movie.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    binding.movieName.text = it.data!!.title
+                    bindFields(it.data!!)
                 }
                 Resource.Status.ERROR -> {
                     Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
@@ -50,6 +50,11 @@ class MovieDetailFragment: Fragment() {
                 }
             }
         })
+    }
+
+    private fun bindFields(movie: MovieDetail) {
+        binding.detailTitle.text = movie.title
+        Picasso.get().load("https://image.tmdb.org/t/p/w500${movie.posterPath}").into(binding.detailPoster)
     }
 
 }
