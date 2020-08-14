@@ -45,19 +45,20 @@ class MovieListFragment: Fragment(), MovieListAdapter.MovieItemListener {
 
     private fun setupObservers() {
         viewModel.movies.observe(viewLifecycleOwner, Observer {
-            when (it.status) {
-                Resource.Status.SUCCESS -> {
-                    Toast.makeText(activity, "SUCCESS", Toast.LENGTH_SHORT).show()
-                    Timber.i(it.data.toString())
-                    adapter.submitList(it.data?.results)
-                }
-                Resource.Status.LOADING -> {
-                    Toast.makeText(activity, "Loading", Toast.LENGTH_SHORT).show()
-                }
-                Resource.Status.ERROR -> {
-                    Toast.makeText(activity, "Error", Toast.LENGTH_SHORT).show()
-                }
-            }
+//            when (it.status) {
+//                Resource.Status.SUCCESS -> {
+//                    Toast.makeText(activity, "SUCCESS", Toast.LENGTH_SHORT).show()
+//                    Timber.i(it.data.toString())
+//                    adapter.submitList(it.data?.results)
+//                }
+//                Resource.Status.LOADING -> {
+//                    Toast.makeText(activity, "Loading", Toast.LENGTH_SHORT).show()
+//                }
+//                Resource.Status.ERROR -> {
+//                    Toast.makeText(activity, "Error", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+            adapter.submitList(it)
         })
     }
 

@@ -12,10 +12,10 @@ import javax.inject.Inject
 class MovieRepository @Inject constructor(
     private val remoteDataSource: MovieRemoteDataSource
 ){
-    fun getMovies(): LiveData<Resource<MovieList>> {
+    fun getMovies(page: Int): LiveData<Resource<MovieList>> {
         Timber.i("getMovies called")
         return performGetOperation(
-            networkCall = { remoteDataSource.getMovies() }
+            networkCall = { remoteDataSource.getMovies(page) }
         )
     }
 

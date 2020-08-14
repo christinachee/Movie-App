@@ -25,7 +25,7 @@ data class Movie(
     @Json(name = "genre_ids")
     val genreIds: List<Int> = listOf(),
     @Json(name = "backdrop_path")
-    val backdropPath: String = "",
+    val backdropPath: String? = "",
     @Json(name = "adult")
     val adult: Boolean = false,
     @Json(name = "overview")

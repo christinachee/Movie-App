@@ -9,7 +9,7 @@ data class MovieDetail(
     @Json(name = "adult")
     val adult: Boolean = false,
     @Json(name = "backdrop_path")
-    val backdropPath: String = "",
+    val backdropPath: String? = "",
     @Json(name = "belongs_to_collection")
     val belongsToCollection: Any? = null,
     @Json(name = "budget")

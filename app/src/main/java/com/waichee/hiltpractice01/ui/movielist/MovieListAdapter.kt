@@ -3,6 +3,7 @@ package com.waichee.hiltpractice01.ui.movielist
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,7 @@ import com.waichee.hiltpractice01.data.entities.Movie
 import com.waichee.hiltpractice01.databinding.ItemMovieBinding
 
 class MovieListAdapter constructor(private val listener: MovieItemListener) :
-    ListAdapter<Movie, MovieListAdapter.MovieVH>(DiffCallback) {
+    PagedListAdapter<Movie, MovieListAdapter.MovieVH>(DiffCallback) {
 
     interface MovieItemListener {
         fun onClickedMovie(movie_id: Int)
@@ -45,7 +46,9 @@ class MovieListAdapter constructor(private val listener: MovieItemListener) :
 
     override fun onBindViewHolder(holder: MovieVH, position: Int) {
         val movie = getItem(position)
-        holder.bind(movie)
+        if (movie != null) {
+            holder.bind(movie)
+        }
     }
 
     companion object DiffCallback: DiffUtil.ItemCallback<Movie>() {
