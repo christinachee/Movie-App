@@ -8,7 +8,6 @@ import timber.log.Timber
 
 
 fun <T> performGetOperation(networkCall: suspend () -> Resource<T>): LiveData<Resource<T>> {
-    Timber.i("PerformGetOperation")
     return liveData(Dispatchers.IO) {
         emit(Resource.loading())
 

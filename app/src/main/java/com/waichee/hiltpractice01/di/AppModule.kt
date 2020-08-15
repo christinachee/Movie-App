@@ -6,6 +6,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.waichee.hiltpractice01.data.remote.MovieRemoteDataSource
 import com.waichee.hiltpractice01.data.remote.MovieService
 import com.waichee.hiltpractice01.data.repository.MovieRepository
+import com.waichee.hiltpractice01.data.repository.TmdbPagingDataSourceFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,4 +34,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideRepository(remoteDataSource: MovieRemoteDataSource) = MovieRepository(remoteDataSource)
+
+    @Provides
+    fun provideTmdbPagingDataSourceFactory(remoteDataSource: MovieRemoteDataSource) = TmdbPagingDataSourceFactory(remoteDataSource)
 }

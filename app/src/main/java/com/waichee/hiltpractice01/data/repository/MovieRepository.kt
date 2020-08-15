@@ -12,13 +12,6 @@ import javax.inject.Inject
 class MovieRepository @Inject constructor(
     private val remoteDataSource: MovieRemoteDataSource
 ){
-    fun getMovies(page: Int): LiveData<Resource<MovieList>> {
-        Timber.i("getMovies called")
-        return performGetOperation(
-            networkCall = { remoteDataSource.getMovies(page) }
-        )
-    }
-
     fun getMovie(movie_id: Int): LiveData<Resource<MovieDetail>> {
         Timber.i("getMovie called $movie_id")
         return performGetOperation(

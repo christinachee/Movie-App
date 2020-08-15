@@ -15,9 +15,6 @@ class MovieDetailViewModel @ViewModelInject constructor(
 ) : ViewModel() {
     private val _id = MutableLiveData<Int>()
 
-    val testName = "Fuck"
-
-
     private val _movie = _id.switchMap { id ->
         movieRepository.getMovie(id)
     }
