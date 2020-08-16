@@ -5,7 +5,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:background">@color/black</item>
     </style>
 
     <style name="DefaultText" parent="Widget.AppCompat.TextView">
@@ -18,4 +17,5 @@
         <item name="backgroundTint">@color/grey</item>
         <item name="android:progressTint">@color/luluyellow</item>
     </style>
+
 </resources>

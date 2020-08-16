@@ -55,6 +55,7 @@ class MovieDetailFragment: Fragment() {
     private fun bindFields(movie: MovieDetail) {
         binding.detailTitle.text = movie.title
         Picasso.get().load("https://image.tmdb.org/t/p/w500${movie.posterPath}").into(binding.detailPoster)
+        Picasso.get().load("https://image.tmdb.org/t/p/w500${movie.backdropPath}").into(binding.detailBackdrop)
     }
 
 }

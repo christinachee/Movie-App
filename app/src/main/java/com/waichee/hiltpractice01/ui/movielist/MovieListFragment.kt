@@ -17,6 +17,7 @@ import com.waichee.hiltpractice01.R
 import dagger.hilt.android.AndroidEntryPoint
 import com.waichee.hiltpractice01.databinding.FragmentMovieListBinding
 import com.waichee.hiltpractice01.utils.Resource
+import com.waichee.hiltpractice01.utils.State
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import kotlinx.android.synthetic.main.fragment_movie_list.view.*
 import timber.log.Timber
@@ -26,18 +27,20 @@ import javax.inject.Inject
 class MovieListFragment: Fragment(), MovieListAdapter.MovieItemListener {
     private val viewModel: MovieListViewModel by viewModels()
     private lateinit var adapter: MovieListAdapter
+    private lateinit var binding: FragmentMovieListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentMovieListBinding.inflate(inflater)
+        binding = FragmentMovieListBinding.inflate(inflater)
         binding.viewModel = viewModel
 
         adapter = MovieListAdapter(this)
         binding.movieRv.adapter = adapter
 
         setupObservers()
+        initState()
 
         return binding.root
     }
@@ -45,20 +48,23 @@ class MovieListFragment: Fragment(), MovieListAdapter.MovieItemListener {
 
     private fun setupObservers() {
         viewModel.movies.observe(viewLifecycleOwner, Observer {
-//            when (it.status) {
-//                Resource.Status.SUCCESS -> {
-//                    Toast.makeText(activity, "SUCCESS", Toast.LENGTH_SHORT).show()
-//                    Timber.i(it.data.toString())
-//                    adapter.submitList(it.data?.results)
-//                }
-//                Resource.Status.LOADING -> {
-//                    Toast.makeText(activity, "Loading", Toast.LENGTH_SHORT).show()
-//                }
-//                Resource.Status.ERROR -> {
-//                    Toast.makeText(activity, "Error", Toast.LENGTH_SHORT).show()
-//                }
-//            }
             adapter.submitList(it)
+        })
+    }
+
+    private fun initState() {
+        viewModel.getState().observe(viewLifecycleOwner, Observer {
+            when (it) {
+                State.SUCCESS -> {
+                    binding.movieRv.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                }
+                State.LOADING -> {
+                    binding.movieRv.visibility = View.GONE
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                else -> Toast.makeText(activity, "State.ERROR", Toast.LENGTH_SHORT).show()
+            }
         })
     }
 

@@ -23,8 +23,4 @@ class MovieDetailViewModel @ViewModelInject constructor(
     fun start(id: Int) {
         _id.value = id
     }
-
-    init {
-        Timber.d("viewmodel init")
-    }
 }
