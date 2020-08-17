@@ -31,7 +31,7 @@ data class MovieDetail(
     @Json(name = "popularity")
     val popularity: Double = 0.0,
     @Json(name = "poster_path")
-    val posterPath: String = "",
+    val posterPath: String? = "",
     @Json(name = "production_companies")
     val productionCompanies: List<ProductionCompany> = listOf(),
     @Json(name = "production_countries")

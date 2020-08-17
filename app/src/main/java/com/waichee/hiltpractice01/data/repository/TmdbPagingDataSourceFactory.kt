@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.waichee.hiltpractice01.data.entities.Movie
 import com.waichee.hiltpractice01.data.remote.MovieRemoteDataSource
-import com.waichee.hiltpractice01.data.repository.TmdbPagingDataSource
 import javax.inject.Inject
 
 class TmdbPagingDataSourceFactory @Inject constructor(
