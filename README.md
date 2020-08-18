@@ -9,7 +9,7 @@ This app uses the following Android Architecture:
 - Navigation
 
 # Screenshot
-![MovieList](screenshot/Screenshot_20200818-101432.jpg | width=100)
+<img src="screenshot/Screenshot_20200818-101432.jpg" width="100">
 
 # Future Development
 - Enhance Movie Detail page
